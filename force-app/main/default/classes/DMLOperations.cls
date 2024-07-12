@@ -92,13 +92,13 @@ public with sharing class DMLOperations {
      */
     public static void updateContactLastName(Id contactId, String newLastName) {
         // Retrieve the Contact from the database
-        Contact c = [SELECT Id, LastName FROM Contact WHERE Id = :contactId];
+        Contact c = [SELECT Id, LastName FROM Contact WHERE Id = :contactId WITH SECURITY_ENFORCED];
 
         // Update the Contact's last name
         c.LastName = newLastName;
 
         // Update the Contact in the database
-        update c;
+        update as User c;
     }
 
     /**
