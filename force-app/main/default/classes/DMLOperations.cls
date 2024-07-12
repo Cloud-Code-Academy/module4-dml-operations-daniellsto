@@ -108,7 +108,7 @@ public with sharing class DMLOperations {
      */
     public static void updateOpportunityStage(Id oppId, String newStage) {
         // Retrieve the Opportunity from the database
-        Opportunity opty = [SELECT Id FROM Opportunity WHERE Id = :oppId WITH SECURITY_ENFORCED];
+        Opportunity opty = [SELECT Id FROM Opportunity WHERE Id = :oppId WITH USER_MODE];
 
         // Update the Opportunity's stage
         opty.StageName = newStage;
@@ -128,7 +128,7 @@ public with sharing class DMLOperations {
     public static void updateAccountFields(Id accountId, String newName, String newIndustry) {
         // Query the account
         // Update the Account with the given Id with the new name and industry
-        Account acc = [SELECT Id FROM Account WHERE Id = :accountId WITH SECURITY_ENFORCED];
+        Account acc = [SELECT Id FROM Account WHERE Id = :accountId WITH USER_MODE];
         acc.Name = newName;
         acc.Industry = newIndustry;
 
