@@ -157,7 +157,15 @@ public with sharing class DMLOperations {
             // Set the Opportunity's Stage to Qualification
             // Set the Opportunity's Close Date to 3 months from today
             // Set the Opportunity's Amount to 50000
+        for (Opportunity opty : opportunities) {
+            opty.StageName = 'Qualification';
+            opty.CloseDate = Date.today().addMonths(3);
+            opty.Amount = 50000;
+        }
+
         // Upsert the opportunities List so that records are either updated or created
+        //upsert as User opportunities;
+        Database.upsert(opportunities, AccessLevel.USER_MODE);
     }
 
     /**
