@@ -110,13 +110,13 @@ public with sharing class DMLOperations {
      */
     public static void updateOpportunityStage(Id oppId, String newStage) {
         // Retrieve the Opportunity from the database
-        Opportunity opty = [SELECT Id FROM Opportunity WHERE Id = :oppId];
+        Opportunity opty = [SELECT Id FROM Opportunity WHERE Id = :oppId WITH SECURITY_ENFORCED];
 
         // Update the Opportunity's stage
         opty.StageName = newStage;
 
         // Update the Opportunity in the database
-        update opty;
+        update as User opty;
     }
 
     /**
