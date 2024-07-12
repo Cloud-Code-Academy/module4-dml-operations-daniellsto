@@ -90,7 +90,7 @@ public with sharing class DMLOperations {
      */
     public static void updateContactLastName(Id contactId, String newLastName) {
         // Retrieve the Contact from the database
-        Contact c = [SELECT Id, LastName FROM Contact WHERE Id = :contactId WITH SECURITY_ENFORCED];
+        Contact c = [SELECT Id, LastName FROM Contact WHERE Id = :contactId WITH USER_MODE];
 
         // Update the Contact's last name
         c.LastName = newLastName;
