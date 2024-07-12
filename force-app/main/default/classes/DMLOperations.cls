@@ -75,10 +75,10 @@ public with sharing class DMLOperations {
         c.LastName = 'Cola';
 
         // Insert the Contact into the database
-        insert as user c;
+        insert as User c;
 
         // Return the Id of the newly created Contact
-        return c.AccountId;
+        return c.Id;
     }
 
     /**
