@@ -38,7 +38,7 @@ public with sharing class DMLOperations {
         Account acc = new Account();
         acc.Name = 'Johny Smone LLC';
         acc.NumberOfEmployees = 10000000;
-        insert acc;
+        insert as User acc;
         return acc.Id;
     }
 
@@ -54,9 +54,7 @@ public with sharing class DMLOperations {
         acc.Name = name;
         acc.Industry= industry;
         // Insert the Account
-        insert acc;    
-
-
+        insert as User acc;    
     }
 
     
@@ -77,7 +75,7 @@ public with sharing class DMLOperations {
         c.LastName = 'Cola';
 
         // Insert the Contact into the database
-        insert c;
+        insert as user c;
 
         // Return the Id of the newly created Contact
         return c.AccountId;
