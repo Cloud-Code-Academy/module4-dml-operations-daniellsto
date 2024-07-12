@@ -129,12 +129,18 @@ public with sharing class DMLOperations {
      */
     public static void updateAccountFields(Id accountId, String newName, String newIndustry) {
         // Query the account
+        // Update the Account with the given Id with the new name and industry
         Account acc = [SELECT Id FROM Account WHERE Id = :accountId WITH SECURITY_ENFORCED];
         acc.Name = newName;
         acc.Industry = newIndustry;
 
-        // Update the Account with the given Id with the new name and industry
-        update acc;
+        try {
+            //Database.update(accList, AccessLevel.SYSTEM_MODE);   
+            update as user acc;
+        } 
+        catch (DmlException e) {
+            System.debug('Error:' + e.getMessage());
+        }
     }
 
 
