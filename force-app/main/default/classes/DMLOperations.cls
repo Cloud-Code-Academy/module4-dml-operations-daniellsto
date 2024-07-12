@@ -96,7 +96,7 @@ public with sharing class DMLOperations {
 
         // Update the Contact's last name
         c.LastName = newLastName;
-        
+
         // Update the Contact in the database
         update c;
     }
@@ -110,11 +110,13 @@ public with sharing class DMLOperations {
      */
     public static void updateOpportunityStage(Id oppId, String newStage) {
         // Retrieve the Opportunity from the database
-        // [SELECT Id FROM Opportunity WHERE Id = :oppId]
+        Opportunity opty = [SELECT Id FROM Opportunity WHERE Id = :oppId];
 
         // Update the Opportunity's stage
+        opty.StageName = newStage;
 
         // Update the Opportunity in the database
+        update opty;
     }
 
     /**
