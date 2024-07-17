@@ -205,14 +205,27 @@ public with sharing class DMLOperations {
 	 */
 	public static Account upsertAccount(String accountName) {
 		// Query for the Account
-		List<Account> accounts = [SELECT Id FROM Account WHERE Name = :accountName];
+		List<Account> accounts = [SELECT Id FROM Account WHERE Name = :accountName WITH USER_MODE];
 
 		// if the Account exists, update the description
-
-		// otherwise, create a new Account and set the description
-
+        // otherwise, create a new Account and set the description
+        Account acc = new Account();
+        if (!accounts.isEmpty()) {
+            // for (Account a : accounts) {
+            //     a.Description = 'Updated Account';
+            //     accountsToUpsert.add(a);
+            // }
+            accounts[0].Description = 'Updated Account';
+            acc = accounts[0];
+            upsert as User acc;        
+        } else {
+            acc.Name = accountName; 
+            acc.Description = 'New Account';
+            insert as User acc;
+        }
+        
 		// Upsert the Account
-		return null;
+		return acc;
 	}
 
     /**
