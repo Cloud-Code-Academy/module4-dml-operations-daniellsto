@@ -179,6 +179,20 @@ public with sharing class DMLOperations {
         // Loop through each Opportunity name
             // Create an Opportunity with the given name
             // Add the Opportunity to the list
+        Account acc = new Account(Name=accountName);
+        List<Opportunity> optList = new List<Opportunity>();
+        insert as User acc;
+
+        for (String oppName : oppNames) {
+            Opportunity opp = new Opportunity();
+            opp.Name = oppName;
+            opp.StageName = 'Qualification';
+            opp.CloseDate = Date.today().addMonths(5);
+            opp.AccountId = acc.Id;
+            optList.add(opp);
+        }
+        //System.debug(optlist);
+        upsert as User optList;
     }
     
     /**
