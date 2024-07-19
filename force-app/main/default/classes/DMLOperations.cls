@@ -257,10 +257,19 @@ public with sharing class DMLOperations {
      */
     public static void insertAndDeleteLeads(List<String> leadNames) {
         // Loop through each Lead name
+        List<Lead> leadList = new List<Lead>();
+        for (String nameFromList : leadNames) {
+            Lead lead = new Lead(FirstName = nameFromList, LastName = 'Lastname', Company = 'CCAcademy');
+            leadList.add(lead);            
+        }
 
         // Insert the Leads
+        //insert as User leadList;
+        Database.insert(leadList, AccessLevel.USER_MODE);
 
         // Delete the Leads
+        delete as User leadList;
+        //Database.delete(leadList, AccessLevel.USER_MODE);
     }
 
 
